@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Inputs from "./components/inputs";
+import Inputs from "./components/Inputs";
 
 class App extends Component {
 
@@ -8,40 +8,37 @@ class App extends Component {
     player1: '',
     player2: '',
     player3: '',
-    player4: ''
+    player4: '',
+    players: ["", "", "", ""],
+    login: true
+
+  }
+  _changePlayerName = (id, text) => {
+    var newPlayers = [...this.state.players];
+    newPlayers[id] = text;
+    this.setState({ players: newPlayers });
   }
 
-  _player1 = text => {
-    this.setState({player1: text})
-  };
-  _player2 = text => {
-    this.setState({player2: text})
-  };
-  _player3 = text => {
-    this.setState({player3: text})
-  };
-  _player4 = text => {
-    this.setState({player4: text})
-  };
-  
+  changestate = () => {
+    this.setState({ login: false })
+  }
+
   render() {
-    function start1 (){
-      start = false
+    switch (this.state.login) {
+      case true:
+        return (
+          <div className="App">
+            <Inputs changePlayerName={this._changePlayerName} />
+            <button onClick={this.changestate}> Start </button>
+          </div>
+        );
+      case false:
+        return (
+          <h1>hello</h1>
+        )
+      default:
+        return ""
     }
-    var start = true;
-    if (start){
-      return (
-        <div className="App">
-           <Inputs player1={this._player1} player2={this._player2} player3={this._player3} player4={this._player4}/>
-           <button onClick='start1()'> Start </button> 
-        </div>
-      );
-    }
-    return (
-      <div>
-        <h1>hello</h1>
-      </div>
-    )
   }
 }
 

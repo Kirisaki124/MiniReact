@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import Player1 from './player1'
-import Player2 from './player2'
-import Player3 from './player3'
-import Player4 from './player4'
+import Player from './Player';
 
-class input extends Component {
-    _handleTextChange = event => console.log(event.target.value)
-
+class Inputs extends Component {
     render() {
+        const playerInputs = Array.from({ length: 4 }).map((value, index) => <Player playerId={index} changePlayerName={this.props.changePlayerName} />);
         return (
             <div>
-                <Player1 player1={this.props.player1}/> <br/>    
-                <Player2 player2={this.props.player2}/> <br/>
-                <Player3 player3={this.props.player3}/> <br/>
-                <Player4 player4={this.props.player4}/> <br/>     
+                {playerInputs}
             </div>
         );
     }
 }
-export default input
+export default Inputs
