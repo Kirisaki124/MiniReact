@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import Inputs from "./components/Inputs";
+import Table from "./components/Table"
 
 class App extends Component {
 
   state = {
-    player1: '',
-    player2: '',
-    player3: '',
-    player4: '',
     players: ["", "", "", ""],
     login: true
-
   }
   _changePlayerName = (id, text) => {
     var newPlayers = [...this.state.players];
@@ -34,7 +30,9 @@ class App extends Component {
         );
       case false:
         return (
-          <h1>hello</h1>
+          <div>
+            <Table players = {this.state.players}/>
+          </div>
         )
       default:
         return ""
